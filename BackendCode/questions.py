@@ -41,3 +41,50 @@ def create_question(user_id):
         db.session.commit()
 
     return jsonify({'message': 'Question created successfully.'}), 201
+
+@questions.route('/api/<int:user_id>/questions/<int:question_id>', methods=['PUT'])
+def update_question(user_id, question_id):
+    data = request.form
+    title = data.get('title')
+    description = data.get('description')
+    uploaded_file = request.files.get('image')
+
+    question = Question.query.get(question_id)
+
+    if not question:
+        return jsonify({'message': 'Question not found.'}), 404
+
+    if question.author != user_id:
+        return jsonify({'message': 'You do not have permission to update this question.'}), 403
+
+    if not title or not description:
+        return jsonify({'message': 'Title and description are required.'}), 400
+
+    question.title = title
+    question.description = description
+    db.session.commit()
+
+    if uploaded_file:
+        filename = secure_filename(uploaded_file.filename)
+        uploaded_file.save(os.path.join(UPLOAD_FOLDER, filename))
+
+        question.fileName = filename
+        db.session.commit()
+
+    return jsonify({'message': 'Question updated successfully.'}), 200
+
+@questions.route('/api/<int:user_id>/questions/<int:question_id>', methods=['DELETE'])
+def delete_question(user_id, question_id):
+    question = Question.query.get(question_id)
+
+    if not question:
+        return jsonify({'message': 'Question not found.'}), 404
+
+    if question.author != user_id:
+        return jsonify({'message': 'You do not have permission to delete this question.'}), 403
+
+    db.session.delete(question)
+    db.session.commit()
+
+    return jsonify({'message': 'Question deleted successfully.'}), 200
+
