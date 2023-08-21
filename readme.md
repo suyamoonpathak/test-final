@@ -101,15 +101,12 @@ Endpoint: /api/<int:user_id>/questions/<int:question_id>/downvote
 Method: POST
 Description: Downvote a question.
 
-Upvote an Answer
-Endpoint: /api/<int:user_id>/questions/<int:question_id>/answers/<int:answer_id>/upvote
+Upvote/Downvote an Answer
+Endpoint: /api/answers/<int:answer_id>/vote
 Method: POST
-Description: Upvote an answer.
-
-Downvote an Answer
-Endpoint: /api/<int:user_id>/questions/<int:question_id>/answers/<int:answer_id>/downvote
-Method: POST
-Description: Downvote an answer.
+Description: To Upvote an answer, use value = 1, To Downvote, use value = -1, to remove your selection, use value=0.
 
 
-### Hosted on - ec2-16-171-166-42.eu-north-1.compute.amazonaws.com
+<!-- ### Hosted on - ec2-16-171-166-42.eu-north-1.compute.amazonaws.com -->
+Forgot to change the host url, I first deployed on ec2 instance, but, since api endpoints were not working, i changed it to render - here's the render url:
+https://shipmnts-test.onrender.com/
