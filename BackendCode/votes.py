@@ -2,7 +2,6 @@ from flask import Blueprint,request,jsonify
 from .models import Question, User, QuestionVote, Answer, AnswerVote
 from . import db
 from datetime import datetime
-from zoneinfo import ZoneInfo
 
 votes = Blueprint("votes", __name__)
 
@@ -33,7 +32,7 @@ def vote_question(question_id):
         author_id=user_id,
         question_id=question_id,
         value=value,
-        date_created=datetime.now(tz=ZoneInfo('Asia/Kolkata'))
+        date_created=datetime.now()
     )
 
     db.session.add(new_vote)
@@ -69,7 +68,7 @@ def vote_answer(answer_id):
         author_id=user_id,
         answer_id=answer_id,
         value=value,
-        date_created=datetime.now(tz=ZoneInfo('Asia/Kolkata'))
+        date_created=datetime.now()
     )
 
     db.session.add(new_vote)

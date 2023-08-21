@@ -4,7 +4,6 @@ from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token
 from datetime import datetime
-from zoneinfo import ZoneInfo
 import re
 
 authentication = Blueprint("authentication", __name__)
@@ -37,7 +36,7 @@ def signup():
     if not re.search('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$', password):
         return jsonify({'message':"Password should be at least 5 characters long with at least a special character, an uppercase letter and a digit."}),400
 
-    new_user = User(username=username, email=email, password=generate_password_hash(password, method='sha256'),last_visit=datetime.now(tz=ZoneInfo('Asia/Kolkata')))
+    new_user = User(username=username, email=email, password=generate_password_hash(password, method='sha256'),last_visit=datetime.now()
     db.session.add(new_user)
     db.session.commit()
 
@@ -59,7 +58,7 @@ def signin():
         return jsonify({'message': 'Invalid username or password.'}), 401
 
     if user:
-        user.last_visit = datetime.now(tz=ZoneInfo('Asia/Kolkata'))
+        user.last_visit = datetime.now()
         db.session.commit()
 
     access_token = create_access_token(identity=user.id)

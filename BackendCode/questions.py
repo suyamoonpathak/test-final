@@ -2,7 +2,6 @@ from flask import Blueprint,request,jsonify
 from .models import Question, Answer, QuestionVote, AnswerVote
 from . import db
 from datetime import datetime
-from zoneinfo import ZoneInfo
 from os import path
 import os
 from werkzeug.utils import secure_filename
@@ -64,7 +63,7 @@ def create_question(user_id):
         title=title,
         description=description,
         author=user_id,
-        date_created=datetime.now(tz=ZoneInfo('Asia/Kolkata'))
+        date_created=datetime.now()
     )
 
     db.session.add(new_question)

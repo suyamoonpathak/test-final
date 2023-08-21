@@ -2,7 +2,6 @@ from flask import Blueprint,request,jsonify
 from .models import Answer
 from . import db
 from datetime import datetime
-from zoneinfo import ZoneInfo
 from os import path
 import os
 from werkzeug.utils import secure_filename
@@ -22,7 +21,7 @@ def create_answer(question_id):
         answer=answer_text,
         author=user_id,
         question_id=question_id,
-        date_created=datetime.now(tz=ZoneInfo('Asia/Kolkata'))
+        date_created=datetime.now()
     )
 
     db.session.add(new_answer)
