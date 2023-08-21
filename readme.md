@@ -17,8 +17,7 @@ Welcome to **Your Flask App Name**! This is a web application built using Flask 
   - [Update or Delete a Question](#update-or-delete-a-question)
   - [Create an Answer](#create-an-answer)
   - [Update or Delete an Answer](#update-or-delete-an-answer)
-- [Contributing](#contributing)
-- [License](#license)
+  - [Votes]
 
 ## Getting Started
 
@@ -92,7 +91,25 @@ Endpoint: /api/<int:user_id>/questions/<int:question_id>/answers/<int:answer_id>
 Method: PUT, DELETE
 Description: Update or delete an answer (if you are the author).
 
+Upvote a Question
+Endpoint: /api/<int:user_id>/questions/<int:question_id>/upvote
+Method: POST
+Description: Upvote a question.
 
+Downvote a Question
+Endpoint: /api/<int:user_id>/questions/<int:question_id>/downvote
+Method: POST
+Description: Downvote a question.
+
+Upvote an Answer
+Endpoint: /api/<int:user_id>/questions/<int:question_id>/answers/<int:answer_id>/upvote
+Method: POST
+Description: Upvote an answer.
+
+Downvote an Answer
+Endpoint: /api/<int:user_id>/questions/<int:question_id>/answers/<int:answer_id>/downvote
+Method: POST
+Description: Downvote an answer.
 
 
 ### Hosted on - ec2-16-171-166-42.eu-north-1.compute.amazonaws.com
