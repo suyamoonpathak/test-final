@@ -91,3 +91,8 @@ Update or Delete an Answer
 Endpoint: /api/<int:user_id>/questions/<int:question_id>/answers/<int:answer_id>
 Method: PUT, DELETE
 Description: Update or delete an answer (if you are the author).
+
+
+
+
+### Hosted on - ec2-16-171-166-42.eu-north-1.compute.amazonaws.com
