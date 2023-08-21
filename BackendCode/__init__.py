@@ -19,9 +19,13 @@ jwt = JWTManager(app)
 
 from .authentication import authentication
 from .questions import questions
+from .votes import votes
+from .answers import answers
 
 app.register_blueprint(authentication, url_prefix="/")
 app.register_blueprint(questions, url_prefix="/")
+app.register_blueprint(votes, url_prefix="/")
+app.register_blueprint(answers, url_prefix="/")
 
 @app.route('/',methods=['GET'])
 def helloWorld():
