@@ -36,7 +36,7 @@ def signup():
     if not re.search('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$', password):
         return jsonify({'message':"Password should be at least 5 characters long with at least a special character, an uppercase letter and a digit."}),400
 
-    new_user = User(username=username, email=email, password=generate_password_hash(password, method='sha256'),last_visit=datetime.now()
+    new_user = User(username=username, email=email, password=generate_password_hash(password, method='sha256'),last_visit=datetime.now())
     db.session.add(new_user)
     db.session.commit()
 
